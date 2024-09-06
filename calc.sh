@@ -55,11 +55,11 @@ main()
 {
 echo -e "\"APID\",\"PROJECT\",\"LIMIT CPU\",\"LIMIT MEM\",\"REQUEST CPU\",\"REQUEST MEM\""
 
-for APID in $(find . -type d -depth 1|grep -v '.git'|grep -Eo '[A-Z|0-9]*')
+for APID in $(find . -type d -maxdepth 1|grep -v '.git'|grep -Eo '[A-Z|0-9]*')
 do
   #[ "${my_debug}" == "1" ] && echo " - APID:${APID}"
 
-  for PROJECT in $(find ${APID} -type d -depth 1|grep -v '.git'|awk -F'/' '{print $NF}')
+  for PROJECT in $(find ${APID} -type d -maxdepth 1|grep -v '.git'|awk -F'/' '{print $NF}')
   do
 
   #[ "${my_debug}" == "1" ] && echo -e "\tAPID:${APID}\tPROJECT:${PROJECT}"
@@ -141,7 +141,7 @@ ls -l "${output_yaml}"
 
 #read_resources_lab
 #main
-#main > k8s-rs-quota.csv
+main > k8s-rs-quota.csv
 calc_by_APID
 exit
 

@@ -4,7 +4,7 @@ metadata:
   name: GGGYYYBB03-quota-cpu-mem
 spec:
   hard:
-    requests.cpu: 21600 
-    requests.memory: 14746
-    limits.cpu: 57600
-    limits.memory: 58982
+    requests.cpu: 22800 
+    requests.memory: 17203
+    limits.cpu: 62400
+    limits.memory: 68813

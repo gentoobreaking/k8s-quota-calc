@@ -4,7 +4,7 @@ metadata:
   name: XXXOOOAA02-quota-cpu-mem
 spec:
   hard:
-    requests.cpu: 32400 
-    requests.memory: 22118
-    limits.cpu: 86400
-    limits.memory: 88474
+    requests.cpu: 33600 
+    requests.memory: 24576
+    limits.cpu: 91200
+    limits.memory: 98304
