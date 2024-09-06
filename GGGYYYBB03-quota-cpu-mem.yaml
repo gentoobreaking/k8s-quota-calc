@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: GGGYYYBB03-quota-cpu-mem
+spec:
+  hard:
+    requests.cpu: 18000 
+    requests.memory: 12288
+    limits.cpu: 48000
+    limits.memory: 49152
