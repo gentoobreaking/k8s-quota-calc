@@ -4,6 +4,7 @@ export POD_ENV="PROD"
 #export POD_ENV="UAT"
 export my_debug="0"
 #export my_debug="1"
+export quota_rate="1.2"
 
 echo " - calculator for kubetnetes's resources quota by david. "
 
@@ -98,6 +99,23 @@ do
   echo "Total REQUEST CPU:${TOTAL_REQUEST_CPU}"
   echo "Total REQUEST MEM:${TOTAL_REQUEST_MEM}"
 
+  # echo | awk '{print int(43*0.6+0.5)}'
+
+  #export TOTAL_LIMIT_CPU=$(echo "${TOTAL_LIMIT_CPU} * ${quota_rate}"|bc)
+  export TOTAL_LIMIT_CPU=$(echo|awk "{print int(${TOTAL_LIMIT_CPU}*${quota_rate}+0.5)}")
+  #export TOTAL_LIMIT_MEM=$(echo "${TOTAL_LIMIT_MEM} * ${quota_rate}"|bc)
+  export TOTAL_LIMIT_MEM=$(echo|awk "{print int(${TOTAL_LIMIT_MEM}*${quota_rate}+0.5)}")
+  #export TOTAL_REQUEST_CPU=$(echo "${TOTAL_REQUEST_CPU} * ${quota_rate}"|bc)
+  export TOTAL_REQUEST_CPU=$(echo|awk "{print int(${TOTAL_REQUEST_CPU}*${quota_rate}+0.5)}")
+  #export TOTAL_REQUEST_MEM=$(echo "${TOTAL_REQUEST_MEM} * ${quota_rate}"|bc)
+  export TOTAL_REQUEST_MEM=$(echo|awk "{print int(${TOTAL_REQUEST_MEM}*${quota_rate}+0.5)}")
+
+  echo "Resouces x Qouta Rate: ${quota_rate}"
+  echo "Total LIMIT CPU x ${quota_rate}:${TOTAL_LIMIT_CPU}"
+  echo "Total LIMIT MEM x ${quota_rate}:${TOTAL_LIMIT_MEM}"
+  echo "Total REQUEST CPU x ${quota_rate}:${TOTAL_REQUEST_CPU}"
+  echo "Total REQUEST MEM x ${quota_rate}:${TOTAL_REQUEST_MEM}"
+
   make_rs_quota_yamls
 done
 }
@@ -123,7 +141,7 @@ ls -l "${output_yaml}"
 
 #read_resources_lab
 #main
-main > k8s-rs-quota.csv
+#main > k8s-rs-quota.csv
 calc_by_APID
 exit
 
